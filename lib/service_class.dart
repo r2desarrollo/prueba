@@ -10,17 +10,11 @@ Future<DataModel?> getSinglePostData() async {
   DataModel? result;
   try {
     final response = await http.get(
-      Uri.parse("http://192.168.1.71:5001/api/pesaje"),
+      Uri.parse("http://192.168.100.121:5001/api/pesaje"),
       headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": "true",
-      'Content-type': 'application/json',
-      'Accept': 'application/json'
-      
+        HttpHeaders.contentTypeHeader: "application/json",
       },);
     if (response.statusCode == 200) {
-      print("ok");
-
       final item = json.decode(response.body);
       result = DataModel.fromJson(item);
     } else {
